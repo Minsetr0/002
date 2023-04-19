@@ -1,44 +1,39 @@
-﻿Random random = new Random();
+﻿int[,] array = { { 7, 4, 3, 7, 9 }, { 1, 5, 4, 3, 2, }, { 6, 8, 9, 4, 1 }, { 4, 1, 3, 2, 7 }, { 7, 4, 3, 2, 1 } };
+int sumInArray = 0;
+int multiplicationInArray = 1;
+int firstMeasurementInArray = 0;
+int secondMeasurementInArray = 1;
+int secondLine = 1;
+int firstColumn = 0;
 
-int columnsInArray = 10;
-int linesInArray = 10;
-int[,] array = new int[linesInArray, columnsInArray];
-int maxNumberInArray = int.MinValue;
-int replacementNumber = 0;
-int minPossibleNumberInArray = 1;
-int maxPossibleNumberInArray = 10;
-
-Console.WriteLine("Матрица до изменения:\n");
-
-for (int i = 0; i < array.GetLength(0); i++)
+for (int i = 0; i < array.GetLength(firstMeasurementInArray); i++)
 {
-	for (int j = 0; j < array.GetLength(1); j++)
+	for (int j = 0; j < array.GetLength(secondMeasurementInArray); j++)
 	{
-        array[i,j] = random.Next(minPossibleNumberInArray, maxPossibleNumberInArray);
-
-		if (maxNumberInArray < array[i,j])
+		if (firstColumn == j)
 		{
-			maxNumberInArray = array[i,j];
+			multiplicationInArray *= array[i, j];
 		}
 
 		Console.Write(array[i,j] + " ");
 	}
-    Console.WriteLine();
+
+	Console.WriteLine();
 }
 
-Console.WriteLine("\nМаксимальное число в матрице равно " + maxNumberInArray);
-Console.WriteLine("Матрица после изменения:\n");
-
-for (int i = 0; i < array.GetLength(0); i++)
+for (int i = 0; i < array.GetLength(firstMeasurementInArray); i++)
 {
-    for (int j = 0; j < array.GetLength(1); j++)
+    for (int j = 0; j < array.GetLength(secondMeasurementInArray); j++)
     {
-        if (maxNumberInArray == array[i, j])
+        if (secondLine == i)
         {
-            array[i,j] = replacementNumber;
+            sumInArray += array[i, j];
         }
 
         Console.Write(array[i, j] + " ");
     }
+
     Console.WriteLine();
 }
+
+Console.WriteLine($"Сумма второй строки равна {sumInArray}, а произведение первого столбца равно {multiplicationInArray}.");
